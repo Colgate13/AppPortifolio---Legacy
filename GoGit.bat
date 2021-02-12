@@ -6,6 +6,6 @@ git add package.json
 git add yarn.lock
 git add assets
 git commit -m "Push by GoGi -> "
-git pullhttps://github.com/Colgate13/AppPortifolio main
-git pushhttps://github.com/Colgate13/AppPortifolio -u main
+git pull https://github.com/Colgate13/AppPortifolio main
+git push https://github.com/Colgate13/AppPortifolio -u main
 git status
