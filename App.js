@@ -1,19 +1,36 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 function HomeScreen({navigation}) {//Função onde vai ficar a page Home
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity onPress={()=> navigation.navigate('Sobre')}>
-        <Text color='green'>Ip para sobre </Text>
-        </TouchableOpacity>
+    <View style={{ flex: 1,padding: 15 }}>
+      <ScrollView contentContainerStyle={{ padding: 20 }} style={styles.scrollviewHome}>
+        <Text style={styles.texthome}>Para onde você deseja navegar</Text>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.btnNavigation}>
+        <Ionicons name="md-home" size={29} color='white'/>
+        <Text style={{ color: 'white', marginTop: 8 }}>Home</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Sobre")} style={styles.btnNavigation}>
+        <Ionicons name="ios-information" size={29} color='white'/>
+        <Text style={{ color: 'white', marginTop: 8 }}>Sobre</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Portifolio")} style={styles.btnNavigation}>
+        <Ionicons name="ios-list" size={29} color='white'/>
+        <Text style={{ color: 'white', marginTop: 8 }}>Portifolio</Text>
+      </TouchableOpacity>
+
+
+
+      </ScrollView>
     </View>
   );
 }
@@ -21,7 +38,7 @@ function HomeScreen({navigation}) {//Função onde vai ficar a page Home
 function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text color='green'>SobreScreen</Text>
+       
     </View>
   );
 }
@@ -29,12 +46,12 @@ function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
 function PortifolioScreen({navigation}) {//Função onde vai ficar a page Portifolio
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text color='green'>PortifolioScreen</Text>
+        
     </View>
   );
 }
 
-const Tab = createBottomTabNavigator();//Criando o BottomTab, a barra que fica em baixo que pode mudar de pages
+const Tab = createBottomTabNavigator(); //Criando o BottomTab, a barra que fica em baixo que pode mudar de pages
 
 
 function App() {//Função principal
@@ -76,3 +93,23 @@ function App() {//Função principal
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+  scrollviewHome:
+  {
+    backgroundColor: 'white',
+  },
+  texthome: 
+  {
+    color: 'purple',
+    fontSize: 24,
+  },
+  btnNavigation:
+  {
+    backgroundColor: 'purple',
+    padding: 20,
+    marginTop: 15,
+    
+
+  }
+})
