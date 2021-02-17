@@ -1,17 +1,20 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import * as WebBrowser from 'expo-web-browser';
 
 
 function HomeScreen({navigation}) {//Função onde vai ficar a page Home
   return (
     <View style={{ flex: 1,padding: 15 }}>
-      <ScrollView contentContainerStyle={{ padding: 20 }} style={styles.scrollviewHome}>
-        <Text style={styles.texthome}>Para onde você deseja navegar</Text>
+      <ScrollView contentContainerStyle={{ padding: 20 }} style={styles.scrollviewEver}>
+        <Text style={styles.textHeader}>Para onde você deseja navegar</Text>
 
       <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.btnNavigation}>
         <Ionicons name="md-home" size={29} color='white'/>
@@ -44,8 +47,82 @@ function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
 }
 
 function PortifolioScreen({navigation}) {//Função onde vai ficar a page Portifolio
+
+  const [images, setImages] = useState([
+    {
+      titulo: "Sistema de fazer pesquisa automatizado",
+      img: require('./assets/img/sco.png'),
+      width: 0,
+      heigth: 0,
+      ratio: 0,
+      url: "https://github.com/Colgate13/Escollog----Applied-statistics",
+    },
+    {
+      titulo: "Gerenciador de clientes",
+      img: require('./assets/img/home1.png'),
+      width: 0,
+      heigth: 0,
+      ratio: 0,
+      url: "https://github.com/Colgate13/Gerenciador-de-clientes",
+
+    },
+
+  ])
+
+  const [windowWidth, setWindonWidth] = useState(0);
+
+  useEffect(() => {
+
+    let windowWidthN = Dimensions.get('window').width;
+
+    setWindonWidth(windowWidthN - 30 - 40); // Subtraindo o padding da view e da scrollView
+
+    let newImage = images.filter(function(val){
+      let w = Image.resolveAssetSource(val.img).width;
+      let h = Image.resolveAssetSource(val.img).height;
+
+      val.width = w;
+      val.heigth = h;
+
+      val.ratio = h / w;
+
+      return val;
+    })
+
+    setImages(newImage);
+  }, [])
+
+  const abrirNavegador = async (url) => {
+      let result = await WebBrowser.openBrowserAsync(url);
+  }
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, padding: 15}}>
+      <ScrollView contentContainerStyle={{padding: 20}} style={styles.scrollviewEver}>
+        <Text style={styles.textHeader}>Os últimos projetos e repositorios:</Text>
+
+
+    {
+      images.map(function(val){
+        return(
+          <View style={styles.parentImage}>
+
+           <Text style={{ backgroundColor: 'black' ,color: 'white', fontSize:16}}>{val.titulo}</Text>
+         
+            <Image style={{width: windowWidth, height: windowWidth*val.ratio, resizeMode: 'stretch'}} source={val.img}/>
+        
+            <TouchableOpacity onPress={() => abrirNavegador(val.url)} style={styles.btnImgOpenNavegador}>
+              <Text style={{ textAlign: 'center', color: 'white', fontSize: 18 }}>Abrir Repositorio</Text>    
+            </TouchableOpacity>
+
+
+          </View>
+        );
+      })
+    }
+
+
+      </ScrollView>
         
     </View>
   );
@@ -95,11 +172,11 @@ function App() {//Função principal
 export default App;
 
 const styles = StyleSheet.create({
-  scrollviewHome:
+  scrollviewEver:
   {
     backgroundColor: 'white',
   },
-  texthome: 
+  textHeader: 
   {
     color: 'purple',
     fontSize: 24,
@@ -109,7 +186,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'purple',
     padding: 20,
     marginTop: 15,
-    
-
+  },
+  parentImage:{
+    marginTop: 30
+  },
+  btnImgOpenNavegador: {
+    padding: 10,
+    backgroundColor: '#5f5380'
   }
 })
