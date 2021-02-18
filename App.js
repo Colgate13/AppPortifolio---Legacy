@@ -39,9 +39,39 @@ function HomeScreen({navigation}) {//Função onde vai ficar a page Home
 }
 
 function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
+
+  const openModalContato = () => 
+  {
+    alert("A");
+  }
+
+
+  let windowWidthThis = Dimensions.get('window').width -30 - 40;
+
+
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-       
+    <View style={{marginTop: 15,flex: 1, padding: 15}}>
+        <ScrollView contentContainerStyle={{padding: 20}} style={styles.scrollviewEver}>
+
+      <Text style={styles.textHeader}>Sobre</Text>
+      <View style={{ backgroundColor: 'black' }}>
+      <Image style={{width: windowWidthThis, height: windowWidthThis}} source={{uri: 'https://avatars.githubusercontent.com/u/54006467'}} />
+      <Text style={styles.bio}>Gabriel Barros / CTO</Text>
+      </View>
+          <View style={{ marginTop: 12}}>
+            <Text style={styles.biolong}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu facilisis enim, vel accumsan metus. Vestibulum eu pulvinar urna, non feugiat tortor. Suspendisse eget luctus quam. Donec vel diam ac turpis laoreet sagittis ac ut est. Mauris volutpat sagittis pulvinar. Proin porttitor id justo ac vestibulum. Phasellus id sem at ex iaculis suscipit eget sed justo.
+
+Sed vel velit ligula. Vestibulum condimentum bibendum ultricies. Nullam dignissim, lectus a consectetur ornare, leo leo viverra erat, ac posuere dolor ipsum a velit. Donec id aliquet massa. Mauris lacinia molestie mollis. Vivamus vel nisi augue. Ut blandit, lorem eget tincidunt finibus, nunc ligula blandit urna, mollis placerat elit lectus at velit. Nunc diam nisl, molestie eget diam ut, semper finibus risus. Donec mollis iaculis venenatis. Maecenas luctus euismod purus et ultricies.
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => openModalContato()} style={{...styles.btnNavigation, borderRadius: 10  }}>
+        <Ionicons name="ios-chatbubbles-outline" size={29} color='white'/>
+        <Text style={{ color: 'white', marginTop: 8 }}>Contato</Text>
+      </TouchableOpacity>
+        </ScrollView>
     </View>
   );
 }
@@ -104,15 +134,14 @@ function PortifolioScreen({navigation}) {//Função onde vai ficar a page Portif
 
     {
       images.map(function(val){
-        return(
-          <View style={styles.parentImage}>
+        return ( <View style={styles.parentImage}>
 
-           <Text style={{ backgroundColor: 'black' ,color: 'white', fontSize:16}}>{val.titulo}</Text>
+           <Text style={{ fontWeight: 'normal' ,backgroundColor: 'black' ,color: 'white', fontSize:16}}>{val.titulo}</Text>
          
             <Image style={{width: windowWidth, height: windowWidth*val.ratio, resizeMode: 'stretch'}} source={val.img}/>
         
             <TouchableOpacity onPress={() => abrirNavegador(val.url)} style={styles.btnImgOpenNavegador}>
-              <Text style={{ textAlign: 'center', color: 'white', fontSize: 18 }}>Abrir Repositorio</Text>    
+              <Text style={{fontWeight: '800',textAlign: 'center', color: 'white', fontSize: 18 }}>Abrir Repositorio</Text>    
             </TouchableOpacity>
 
 
@@ -179,7 +208,10 @@ const styles = StyleSheet.create({
   textHeader: 
   {
     color: 'purple',
+    fontWeight: 'bold',
     fontSize: 24,
+    textShadowColor: 'blue',
+    textShadowRadius: 1
   },
   btnNavigation:
   {
@@ -193,5 +225,19 @@ const styles = StyleSheet.create({
   btnImgOpenNavegador: {
     padding: 10,
     backgroundColor: '#5f5380'
+  },
+  bio: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+    textAlign: 'center',
+    textShadowColor: 'red',
+    textShadowRadius: 15
+  },
+  biolong: {
+    textAlign: 'justify',
+    color: 'black',
+    textShadowColor: 'blue',
+    textShadowRadius: 1
   }
 })
