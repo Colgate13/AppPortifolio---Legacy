@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import * as WebBrowser from 'expo-web-browser';
+import Modal from "./src/utils/Modal.js";
 
 
 function HomeScreen({navigation}) {//Função onde vai ficar a page Home
@@ -40,10 +41,19 @@ function HomeScreen({navigation}) {//Função onde vai ficar a page Home
 
 function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
 
+  const [showModal, setModal] = useState(false);
+  const [nome, setNome] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const [number, setNumber] = useState('');
+
   const openModalContato = () => 
   {
-    alert("A");
+    setModal(!showModal);
   }
+
+  const enviarMensagem = () => {
+    alert('Mensagem Enviada!');
+  } 
 
 
   let windowWidthThis = Dimensions.get('window').width -30 - 40;
@@ -51,6 +61,15 @@ function SobreScreen({navigation}) {//Função onde vai ficar a page Sobre
 
 
   return (
+    <View style={{ flex: 1 }}>
+      {
+        (showModal)?
+        <Modal setNome={setNome} setMensagem={setMensagem} setNumber={setNumber} enviarMensagem={enviarMensagem}></Modal>
+        :
+        <View></View>
+      }
+
+
     <View style={{marginTop: 15,flex: 1, padding: 15}}>
         <ScrollView contentContainerStyle={{padding: 20}} style={styles.scrollviewEver}>
 
@@ -73,14 +92,15 @@ Sed vel velit ligula. Vestibulum condimentum bibendum ultricies. Nullam dignissi
       </TouchableOpacity>
         </ScrollView>
     </View>
+</View>
   );
 }
 
 function PortifolioScreen({navigation}) {//Função onde vai ficar a page Portifolio
 
-  const [images, setImages] = useState([
-    {
-      titulo: "Sistema de fazer pesquisa automatizado",
+const [images, setImages] = useState([
+  {
+    titulo: "Sistema de fazer pesquisa automatizado",
       img: require('./assets/img/sco.png'),
       width: 0,
       heigth: 0,
@@ -239,5 +259,32 @@ const styles = StyleSheet.create({
     color: 'black',
     textShadowColor: 'blue',
     textShadowRadius: 1
+  },
+  modalParent: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex: 1
+  },
+  boxModal: {
+    backgroundColor: 'white',
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    left: 0,
+    top: '35%',
+    marginTop: '10%',
+    padding: 10
+  },
+  textInput:
+  {
+    height: 35,
+    width: '100%',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginBottom: 10,
   }
 })
