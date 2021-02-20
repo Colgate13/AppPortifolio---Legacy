@@ -4,30 +4,41 @@ import {TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
 
+
 export default function Modal(props) {
+
+  const enviarMensagem = () => {
+    alert('Mensagem Enviada!');
+  } 
+
+
+  const [nome, setNome] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const [number, setNumber] = useState('');
+
     return(
 
         <View style={styles.modalParent}>
           <View style={{margin: 1 }}>
           
-            <TouchableOpacity onPress={() => setModal(!showModal)}><Text style={{textAlign: 'right' ,fontSize: 400, color: 'red' }}></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => props.setModal(!props.showModal)}><Text style={{textAlign: 'right' ,fontSize: 400, color: 'red' }}></Text></TouchableOpacity>
           </View>
 
           <View style={styles.boxModal}>
 
 
             <Text style={{...styles.textHeader, fontSize: 18, fontWeight: 'normal', textShadowColor: 'white', color: 'black', fontWeight: 'bold' }}>Nome:</Text>
-            <TextInput onChangeText={(text) => props.setNome(text)} style={styles.textInput} numberOfLines={4}></TextInput>
+            <TextInput onChangeText={(text) => setNome(text)} style={styles.textInput} numberOfLines={4}></TextInput>
 
 
             <Text style={{...styles.textHeader, fontSize: 18, fontWeight: 'normal', textShadowColor: 'white', color: 'black', fontWeight: 'bold' }}>Mensagem:</Text>
-            <TextInput onChangeText={(text) => props.setMensagem(text)}  style={styles.textInput} numberOfLines={4}></TextInput>
+            <TextInput onChangeText={(text) => setMensagem(text)}  style={styles.textInput} numberOfLines={4}></TextInput>
 
             <Text style={{...styles.textHeader, fontSize: 18, fontWeight: 'normal', textShadowColor: 'white', color: 'black', fontWeight: 'bold' }}>Numero:</Text>
-            <TextInput onChangeText={(text) => props.setNumber(text)} style={styles.textInput} numberOfLines={1}></TextInput>
+            <TextInput onChangeText={(text) => setNumber(text)} style={styles.textInput} numberOfLines={1}></TextInput>
             
 
-            <TouchableOpacity onPress={() => props.enviarMensagem()} style={{...styles.btnNavigation, borderRadius: 10, padding: 15}}>
+            <TouchableOpacity onPress={() => enviarMensagem()} style={{...styles.btnNavigation, borderRadius: 10, padding: 15}}>
              <Ionicons name="ios-mail-open-outline" size={29} color='white'/>
               <Text style={{ color: 'white', marginTop: 8 }}>Enviar</Text>
             </TouchableOpacity>
@@ -52,23 +63,6 @@ const styles = StyleSheet.create({
       backgroundColor: 'purple',
       padding: 20,
       marginTop: 15,
-    },
-    parentImage:{
-      marginTop: 30
-    },
-    bio: {
-      color: 'white',
-      fontWeight: 'bold',
-      fontSize: 18,
-      textAlign: 'center',
-      textShadowColor: 'red',
-      textShadowRadius: 15
-    },
-    biolong: {
-      textAlign: 'justify',
-      color: 'black',
-      textShadowColor: 'blue',
-      textShadowRadius: 1
     },
     modalParent: {
       position: 'absolute',
@@ -96,5 +90,5 @@ const styles = StyleSheet.create({
       borderColor: '#ccc',
       borderWidth: 1,
       marginBottom: 10,
-    }
+    },
   })
