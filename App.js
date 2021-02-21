@@ -6,6 +6,7 @@ import Sobre from './src/pages/Sobre.js'
 import Home from "./src/pages/Home.js";
 import Porti from "./src/pages/Porti.js";
 
+
 function HomeScreen({navigation}) {//Função onde vai ficar a page Home
   return(<Home navigation={navigation}></Home>); 
 }
@@ -53,6 +54,8 @@ function App() {//Função principal
       <Tab.Screen name="Home" component={HomeScreen} />{/* Definindo as pages */}
       <Tab.Screen name="Sobre" component={SobreScreen} />{/* Definindo as pages */}
       <Tab.Screen name="Portifolio" component={PortifolioScreen} />{/* Definindo as pages */}
+   
+
 
     </Tab.Navigator>
   </NavigationContainer>

@@ -3,7 +3,7 @@ import { View, Text,  TextInput, StyleSheet } from 'react-native';
 import {TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useState } from 'react';
-
+import { db } from '../database/firebase.js';
 
 export default function Modal(props) {
 
