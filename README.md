@@ -1,5 +1,5 @@
 <h1 align="center">ppPortifolio</h1>
-<p align="center">Aplicativo usando Expo, react navigation para guardar um portifolio</p>
+<p align="center">Aplicativo usando Expo, react navigation para  portifolio</p>
 
 <p align="center">
   <a href="#-tecnologias">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -15,30 +15,27 @@
 
 ## technologies 🐱‍🏍🎂
 - yarn and npm
-- [Express](https://expressjs.com/pt-br/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [TypeORM](https://typeorm.io/#/)
+- [Javascript](https://www.javascript.com/)
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
+- [React Native DOM](https://pt-br.reactjs.org/docs/react-dom.html)
 
 ## 💻 Project
 
-RestFul API for chat support, with websocket
+Esse é um treinamento para criar aplicativos com react native.
 
 ## Installation and run
 
 ```yarn 
-git clone https://github.com/Colgate13/SupportChat-ApiRestul-WS.git
+git clone https://github.com/Colgate13/AppPortifolio
 yarn 
-yarn typeorm migration:run
-yarn dev
-$ > Server is running in 3333!
+expo install 
+expo start
 ```
 
 ## Usage programs
 
-For send JSON and request's ->  install  [insomnia](https://insomnia.rest/)
-
-For acess SQLlite(Data base) -> install  [Beekeeper Studio](https://www.beekeeper.io/)
-
+Run app in phone, iphone or android ->  install  [EXPO](https://expo.io/
 
 ## License
 
