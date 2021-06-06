@@ -1,4 +1,4 @@
-<h1 align="center">ppPortifolio</h1>
+<h1 align="center">AppPortifolio</h1>
 <p align="center">Aplicativo usando Expo, react navigation para  portifolio</p>
 
 <p align="center">
